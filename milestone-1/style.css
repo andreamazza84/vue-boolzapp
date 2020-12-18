@@ -8,6 +8,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 1050px;
     height: 100vh;
     background-color: #dbdbd3;
     font-family: 'Roboto', sans-serif;
@@ -24,13 +25,16 @@ body{
 /* /Background */
 /*Container della chat*/
 .container{
+    display: flex;
     width: 80%;
-    height: 90%;
+    height: 90vh;
     background-color:#eaeaea;
     border-radius: 2px;
+    overflow: hidden;
 }
 #sidebar{
     width: 35%;
+    height: 100%;
     border-right: 1px solid #ccc;
 }
 #main{
@@ -53,7 +57,7 @@ body{
 /* header-left */
 .header-left{
     width: 70%;
-    justify-content: left;
+    justify-content: flex-start;
 }
 img.avatar{
     height: 60px;
@@ -66,7 +70,7 @@ img.avatar{
 /* header-right */
 .header-right{
     width: 30%;
-    justify-content: right;
+    justify-content: flex-end;
 }
 /*.header-right >*/ i{
     margin: 0 10px;
@@ -102,31 +106,38 @@ img.avatar{
     color: #555;
     font-size: 14px;
 }
-/* Search-bar */
+/* search-bar */
 .search{
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 50px;
     background-color: #fafafa;
     padding: 5px;
 }
-.search > .search-bar{
+.text-bar{
     display: flex;
-    width: 95%;
-    height: 100%;
+    width: 90%;
+    height: 80%;
     margin: auto;
     border-radius: 2px;
     background-color: white;
     align-items: center;
     justify-content: space-between;
 } 
-.search > .search-bar > input{
+.text-bar > input{
     border: 0;
     width: 80%;
-    height: 30px;
+    height: 100%;
     font-size: 16px;
     margin-left: 10px;
+    padding: 0 10px;
 }   
 /* Contacts */
+.contacts{
+    height: calc(100% - 180px);
+    overflow-y: scroll;
+}
 .contact{
     display: flex;
     padding: 5px;
@@ -138,3 +149,28 @@ img.avatar{
 .contact > .avatar{
     margin-left: 30px;;
 }
+/* MAIN */
+/* header */
+.user-name > p {
+    font-size: 16px;
+    text-transform: none;
+    color: #555;
+}
+/* Chat */
+.chat{
+    width: 100%;
+    height: calc(100% - 130px);
+    background-image: url(../img/mine.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* Message-bar */
+.message-bar{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #f3eeea;
+    align-items: center;
+}
+
