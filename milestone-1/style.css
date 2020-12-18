@@ -5,15 +5,71 @@
 }
 /* Background */
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     background-color: #dbdbd3;
+    font-family: 'Roboto', sans-serif;
 }
 .background-top{
     position: fixed;
     top: 0;
     left: 0;
+    z-index: -1;
     background-color: #009688;
     height: 90px;
     width: 100%;
 }
 /* /Background */
+/*Container della chat*/
+.container{
+    width: 80%;
+    height: 90%;
+    background-color:#eaeaea;
+    border-radius: 2px;
+}
+#sidebar{
+    width: 35%;
+}
+#main{
+    width: 65%;
+}
+/*/Container della chat*/
+/*Sidebar*/
+.header{
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+}
+.header-left,
+.header-right{
+    display: flex;
+    height: 60px; /*100%*/
+    align-items: center;
+}
+/* header-left */
+.header-left{
+    width: 70%;
+    justify-content: left;
+}
+img.avatar{
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+.user-name{
+    text-transform: capitalize;
+}
+/* header-right */
+.header-right{
+    width: 30%;
+    justify-content: right;
+}
+.header-right > i{
+    margin: 0 10px;
+    font-size: 22px;
+    color: #b1b1b1;
+}
+
+
