@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Background */
+body{
+    height: 100vh;
+    background-color: #dbdbd3;
+}
+.background-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #009688;
+    height: 90px;
+    width: 100%;
+}
+/* /Background */
