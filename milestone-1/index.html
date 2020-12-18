@@ -20,7 +20,7 @@
             <div class="header">
 
                 <div class="header-left">
-                    <img class="avatar" src="../img/avatar_1.jpg" alt="avatar_1">
+                    <img class="avatar" src="../img/avatar_io.jpg" alt="avatar_1">
                     <div class="user-name">nome utente</div>
                 </div>
                 <div class="header-right">
@@ -49,9 +49,12 @@
             </div>
 
             <div class="contacts">
-                <div class="contact">
-                    <img class ="avatar" src="../img/avatar_2.jpg" alt="profile picture">
-                    <div class="user-name">michele</div>
+                <!-- Ciclo v-for per fare apparire tutti i contatti -->
+                <div class="contact" v-for="(contact, index) in contacts">
+                    <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
+                    <img class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
+                    <!-- Parentesi baffo per inserire il nome dei contatti -->
+                    <div class="user-name">{{contact.name}}</div>
                 </div>
             </div>
         </div>
@@ -59,7 +62,7 @@
         <div id="main">
             <div class="header">
                 <div class="header-left">
-                    <img class="avatar" src="../img/avatar_2.jpg" alt="avatar_1">
+                    <img class="avatar" src="../img/avatar_1.jpg" alt="avatar_1">
                     <div class="user-name">
                         Michele  
                         <p>ultimo accesso oggi alle</p>
@@ -82,9 +85,9 @@
                     <div class="text">Tutto bene, tu?</div>
                     <div class="data">10:05</div>    
                 </div>
-
             </div>
             <div class="message-bar">
+                <i class="far fa-smile"></i>
                 <div class="text-bar">
                     <input type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
