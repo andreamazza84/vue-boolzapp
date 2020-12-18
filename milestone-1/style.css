@@ -158,12 +158,33 @@ img.avatar{
 }
 /* Chat */
 .chat{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: calc(100% - 130px);
     background-image: url(../img/mine.jpg);
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: repeat;
+    overflow: hidden;
+    padding: 10px;
+}
+.msg{
+    min-width: 30%;
+    max-width: 50%;
+    width: fit-content;
+    color: #555;
+    border-radius: 5px;
+    margin: 10px 5px;
+    padding: 10px 5px;
+    font-size: 15px;
+}
+.sent-msg{
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+.income-msg{
+    background-color: white;
+    align-self: flex-start;
 }
 /* Message-bar */
 .message-bar{
@@ -173,4 +194,9 @@ img.avatar{
     background-color: #f3eeea;
     align-items: center;
 }
-
+.msg > .text{
+}
+.msg > .data{
+    font-size: 12px;
+    text-align: right;
+}
