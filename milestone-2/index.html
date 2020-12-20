@@ -21,7 +21,7 @@
 
                 <div class="header-left">
                     <img class="avatar" src="../img/avatar_io.jpg" alt="avatar_1">
-                    <div class="user-name">nome utente</div>
+                    <div class="user-name">Andrea</div>
                 </div>
                 <div class="header-right">
                     <i class="fas fa-circle-notch"></i>
@@ -51,7 +51,7 @@
             <div class="contacts">
                 <!-- Ciclo v-for per fare apparire tutti i contatti -->
                 <!-- Cliccando sul contatto viene passato il suo nome -->
-                <div class="contact" v-for="(contact, index) in contacts" @click="userName = contact.name" @click="chatFilter(contact.name, contacts)">
+                <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)">
                     <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
                     <img class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
                     <!-- Parentesi baffo per inserire il nome dei contatti -->
@@ -64,10 +64,11 @@
         <div id="main">
             <div class="header">
                 <div class="header-left">
-                    <img class="avatar" src="../img/avatar_1.jpg" alt="avatar_1">
+                    <!-- MS2- Aggiornamento del nome e avatar nell'header corrispondenti alla chat selezionata dal sidemenu -->
+                    <img class="avatar" :src="'../img/avatar' + userAvatar + '.jpg'" alt="profile picture">
                     <div class="user-name">
                         {{userName}}  
-                        <p>ultimo accesso oggi alle</p>
+                        <p>Ultimo accesso oggi alle 12:05</p>
                     </div>
                 </div>
                 <div class="header-right">
@@ -78,14 +79,10 @@
             </div>
 
             <div class="chat">
-                <div class="msg income-msg">
-                    <div class="text">Ciao come stai?</div>
-                    <div class="data">10:00</div>
-                </div>
-
-                <div class="msg sent-msg">
-                    <div class="text">Tutto bene, tu?</div>
-                    <div class="data">10:05</div>    
+                <!-- MS2 - Caricamento messaggi -->
+                <div class="msg" v-for="message in userMsg" :class="message.status">
+                    <div class="text">{{message.text}}</div>
+                    <div class="data">{{message.date}}</div>
                 </div>
             </div>
 

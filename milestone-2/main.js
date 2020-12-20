@@ -69,7 +69,7 @@ let app = new Vue({
                 ],
             },
             {
-            name: 'Luisa',
+            name: 'Luigi',
             avatar: '_4',
             visible: true,
             messages: [
@@ -80,24 +80,36 @@ let app = new Vue({
                     },
                     {
                     date: '10/01/2020 15:50:00',
-                    text: 'Si, ma preferirei andare al cinema',
+                    text: 'Sì, ma preferirei andare al cinema',
                     status: 'received'
                     }
                 ],
             },
         ],
+    // MS2
+    //valori al caricamento della pagina.    
     userName: "Michele",
-    //@click="userName = contact.name"
-    filteredList: [],
-    },
+    userAvatar: "_1",
+    userMsg: [],
+    userObj: {},
+    }, //data
+
     methods: {
     //Filtrare tra le chat soltanto quelle che corrispondono all'utente selezionato
         chatFilter: function(name, list){
-            filteredList = list.filter((element) => {
+            const filteredList = list.filter((element) => {
                 return element.name === name;
             });
-            console.log(filteredList[0]['messages']);
-            return filteredList;
-        }
+        //ricavo l'oggetto dall'array filtrata 
+        userObj = filteredList[0];
+        console.log(userObj);
+        //aggiorna il valore per mostrarlo sull'header della chat 
+        app.userName = userObj.name;
+        app.userAvatar =  userObj.avatar;
+        app.userMsg = userObj.messages;
+        return userObj;
+        },
+
     },
+    // /MS2
 });

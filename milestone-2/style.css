@@ -183,11 +183,11 @@ img.avatar{
     padding: 10px 5px;
     font-size: 15px;
 }
-.sent-msg{
+.sent{
     background-color: #dcf8c6;
     align-self: flex-end;
 }
-.income-msg{
+.received{
     background-color: white;
     align-self: flex-start;
 }
