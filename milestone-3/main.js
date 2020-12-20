@@ -90,11 +90,34 @@ let app = new Vue({
     //valori al caricamento della pagina.    
     userName: "Michele",
     userAvatar: "_1",
-    userMsg: [],
+    userMsg: [{
+        date: '10/01/2020 15:30:55',
+        text: 'Hai portato a spasso il cane?',
+        status: 'sent'
+        },
+        {
+        date: '10/01/2020 15:50:00',
+        text: 'Ricordati di dargli da mangiare',
+        status: 'sent'
+        },
+        {
+        date: '10/01/2020 16:15:22',
+        text: 'Tutto fatto!',
+        status: 'received'
+        }],
+    
     userObj: {},
+    
+    // MS3 
+    typingMsg: "",
+    inputMsg: "",
+    sentMessages: [],
+    responseMsg: "ok",
+
     }, //data
 
     methods: {
+    //MS2
     //Filtrare tra le chat soltanto quelle che corrispondono all'utente selezionato
         chatFilter: function(name, list){
             const filteredList = list.filter((element) => {
@@ -102,15 +125,25 @@ let app = new Vue({
             });
         //ricavo l'oggetto dall'array filtrata 
         userObj = filteredList[0];
-        console.log(userObj);
+        //console.log(userObj);
         //aggiorna il valore per mostrarlo sull'header della chat 
         app.userName = userObj.name;
         app.userAvatar =  userObj.avatar;
         app.userMsg = userObj.messages;
         return userObj;
         },
-
+    //MS3   
+        //Quando richiamata fa comparire il messaggi inserito nella chat
+        sendMessage: function(text){
+           if(text !== ""){
+               app.inputMsg = text;
+               app.typingMsg = "";
+               app.sentMessages.push(app.inputMsg);
+           }
+           console.log(app.sentMessages);
+           //setTimeout
+           return app.sentMessages;
+        },
     },
-    // /MS2
 
 });
