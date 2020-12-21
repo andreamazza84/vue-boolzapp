@@ -157,7 +157,7 @@ img.avatar{
 /* MAIN */
 /* header */
 .user-name > p {
-    font-size: 16px;
+    font-size: 14px;
     text-transform: none;
     color: #555;
 }
@@ -199,9 +199,41 @@ img.avatar{
     background-color: #f3eeea;
     align-items: center;
 }
+.msg{
+    position: relative;
+}
+.msg > .text{
+    display: flex;
+    justify-content: space-between;
+}
 .msg > .data{
     font-size: 12px;
     text-align: right;
     color: #aaa;
     margin-top: 5px;
+}
+/*MS5 - drop-down menu*/
+.msg > .text > .arrow-down{
+    opacity: 0;
+} 
+.msg:hover >.text >.arrow-down{
+    opacity: 1;
+}
+.drop-down{
+    position: absolute;
+    top: 60%;
+    right: 15px;
+    z-index: 1;
+    padding: 5px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px 1px #999;
+    display: none;
+}
+.drop-down > li{
+    list-style: none;
+    margin: 10px;
+}
+.show{
+    display: block;
 }
