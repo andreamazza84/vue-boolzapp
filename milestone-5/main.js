@@ -181,6 +181,9 @@ let app = new Vue({
     message: "",
     date: dayjs().format('DD/MM/YYYY HH:mm:ss'),  
     search: "",
+    
+    //MS4
+    alert: "",
 
     // MS5
     pointer: -1,
@@ -220,13 +223,14 @@ let app = new Vue({
         },
     //MS4 - Ricerca l'utente tra le conversazioni
         convFilter: function(text){
+            app.alert = "Nessun utente con questo nome"
             app.contacts.forEach((element) => {
                 if(text.length > 0){
                     text = text.toLowerCase();
                     const searchName = element.name.toLowerCase();
-                    //console.log(searchName);
                     if(searchName.includes(text,0)){
                         element.visible = true;
+                        app.alert = "";
                     }
                     else{
                         element.visible = false;
@@ -234,6 +238,7 @@ let app = new Vue({
                 }
                 else{
                     element.visible = true;
+                    app.alert = "";
                 }      
             });
             
@@ -244,7 +249,13 @@ let app = new Vue({
         },
         removeMsg: function(index){
             app.contacts[app.counter].messages.splice(index, 1);
-            //console.log("Click");
+        },
+        scrollToElement() {
+            const el = this.$el.getElementsByClassName('scroll-to-me')[0];
+        
+            if (el) {
+              el.scrollIntoView();
+            }
         }    
     },
     mounted(){
