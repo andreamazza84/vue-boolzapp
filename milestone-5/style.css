@@ -233,6 +233,7 @@ img.avatar{
 .drop-down > li{
     list-style: none;
     margin: 10px;
+    cursor: pointer;
 }
 .active{
     display: block;

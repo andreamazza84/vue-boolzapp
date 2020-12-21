@@ -85,7 +85,91 @@ let app = new Vue({
                     }
                 ],
             },
+            {
+                name: 'Marco', //contact
+                avatar: '_5',
+                visible: true,
+                messages: [
+                        {
+                        date: '10/01/2020 15:30:55',
+                        text: 'Hai portato a spasso il cane?',
+                        status: 'sent'
+                        },
+                        {
+                        date: '10/01/2020 15:50:00',
+                        text: 'Ricordati di dargli da mangiare',
+                        status: 'sent'
+                        },
+                        {
+                        date: '10/01/2020 16:15:22',
+                        text: 'Tutto fatto!',
+                        status: 'received'
+                        }
+                            ],
+                    },
+                    {
+                name: 'Marina',
+                avatar: '_6',
+                visible: true,
+                messages: [
+                        {
+                        date: '20/03/2020 16:30:00',
+                        text: 'Ciao come stai?',
+                        status: 'sent'
+                        },
+                        {
+                        date: '20/03/2020 16:30:55',
+                        text: 'Bene grazie! Stasera ci vediamo?',
+                        status: 'received'
+                        },
+                        {
+                        date: '20/03/2020 16:35:00',
+                        text: 'Mi piacerebbe ma devo andare a fare la spesa.',
+                        status: 'sent'
+                        }
+                    ],
+                },
+                {
+                name: 'Giacomo',
+                avatar: '_7',
+                visible: true,
+                messages: [
+                        {
+                        date: '28/03/2020 10:10:40',
+                        text: 'La Marianna va in campagna',
+                        status: 'received'
+                        },
+                        {
+                        date: '28/03/2020 10:20:10',
+                        text: 'Sicuro di non aver sbagliato chat?',
+                        status: 'sent'
+                        },
+                        {
+                        date: '28/03/2020 16:15:22',
+                        text: 'Ah scusa!',
+                        status: 'received'
+                        }
+                    ],
+                },
+                {
+                name: 'Tizio',
+                avatar: '_8',
+                visible: true,
+                messages: [
+                        {
+                        date: '10/01/2020 15:30:55',
+                        text: 'Lo sai che ha aperto una nuova pizzeria?',
+                        status: 'sent'
+                        },
+                        {
+                        date: '10/01/2020 15:50:00',
+                        text: 'Sì, ma preferirei andare al cinema',
+                        status: 'received'
+                        }
+                    ],
+                },
         ],
+        
     // MS2
     //valori al caricamento della pagina.    
     counter: 0,
@@ -99,9 +183,9 @@ let app = new Vue({
     search: "",
 
     // MS5
+    pointer: -1,    
     active: "active",
-    arrow: "",
-    pointer: 0,    
+    show: false,
     }, 
 
 
@@ -158,26 +242,39 @@ let app = new Vue({
             
         },
         menuShow: function(index){
-            if (app.show === "show") {
-                app.show = "";
-            }
-            else{
-                app.show = "show"
-            }
-            console.log(index);
+            //console.log(index);
+            // if (app.pointer !== index) {
+            //     app.pointer = index;
+            // }
+            // else{
+            //     //valore di default
+            //     app.pointer = -1;
+            // }   
         },    
     },
-    // mounted(){
-    //     document.addEventListener(('click'), function(e) {
-    //         const arrowList = document.querySelectorAll('.arrow-down')
-    //         arrowList.forEach(element => {
-    //             if(element === e.target){
-    //                 return app.arrow = element;
-    //             }
-    //         });
-    //     console.log(app.arrow);
-    //     return app.arrow;     
-    //     });
-    //}   
+    mounted(){
+        document.addEventListener(('click'), function(e) {
+            //const arrowElement = document.querySelector('.arrow-down');
+        
+            //if(e.target === arrowElement){
+                const arrowList = document.querySelectorAll('.arrow-down');
+                arrowList.forEach((element, index) => {              
+                    
+                    if(element === e.target){
+                        if(app.pointer !== index){
+                            app.pointer = index;
+                        }
+                        else if(app.pointer === index){
+                            app.pointer = -1
+                        }
+                    } 
+                });
+                //console.log(app.pointer);
+            //}
+            //else{
+            //    app.pointer = -1;  
+            //}
+        });
+    }   
 
 });
