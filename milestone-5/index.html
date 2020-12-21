@@ -96,7 +96,7 @@
                     <!-- MS5 - Menu a tendina posizionato rispetto al div.msg -->
                     <ul class="drop-down" :class="(index === pointer) ? 'active' : ''">
                         <li class="item">Message info</li>
-                        <li class="item">Delete message</li>
+                        <li class="item" @click="removeMsg(index)">Delete message</li>
                     </ul>
                 </div>
             </div>

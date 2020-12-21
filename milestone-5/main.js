@@ -183,15 +183,14 @@ let app = new Vue({
     search: "",
 
     // MS5
-    pointer: -1,    
+    pointer: -1,
+    index: 0,    
     active: "active",
-    show: false,
     }, 
 
 
     methods: {
-    //MS2
-    //Filtrare tra le chat soltanto quelle che corrispondono all'utente selezionato
+    //MS2 - Filtra tra le chat soltanto quelle che corrispondono all'utente selezionato
         chatFilter: function(name, list){
             list.forEach((element, index) => {
                 if (element.name === name) {
@@ -200,12 +199,11 @@ let app = new Vue({
                 }
              });
         
-        //aggiorna il valore per mostrarlo sull'header della chat 
+    //MS2 - Aggiorna il valore per mostrarlo sull'header della chat 
         app.userName = app.contacts[app.counter].name;
         app.userAvatar =  app.contacts[app.counter].avatar;
         },
-    //MS3   
-    //Quando richiamata fa comparire il messaggi inserito nella chat
+    //MS3 - Quando richiamata fa comparire il messaggi inserito nella chat
         sendMessage: function(text){
            if(text !== ""){
                app.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss') , text: text, status: "sent"};
@@ -220,8 +218,7 @@ let app = new Vue({
             app.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss'), text: "ok", status: "received"};
             app.contacts[app.counter].messages.push(app.message);
         },
-    //MS4 
-    //Ricerca utente tra le conversazioni
+    //MS4 - Ricerca l'utente tra le conversazioni
         convFilter: function(text){
             app.contacts.forEach((element) => {
                 if(text.length > 0){
@@ -241,39 +238,31 @@ let app = new Vue({
             });
             
         },
+        // MS5 - Funzione che passa il valore di index del v-for
         menuShow: function(index){
-            //console.log(index);
-            // if (app.pointer !== index) {
-            //     app.pointer = index;
-            // }
-            // else{
-            //     //valore di default
-            //     app.pointer = -1;
-            // }   
-        },    
+            app.index = index;   
+        },
+        removeMsg: function(index){
+            app.contacts[app.counter].messages.splice(index, 1);
+            //console.log("Click");
+        }    
     },
     mounted(){
+        // MS5 - Cliccando sull'icona il menu appare. Cliccandoci una seconda volta o in un altro punto, il menù scompare.
         document.addEventListener(('click'), function(e) {
-            //const arrowElement = document.querySelector('.arrow-down');
-        
-            //if(e.target === arrowElement){
-                const arrowList = document.querySelectorAll('.arrow-down');
-                arrowList.forEach((element, index) => {              
-                    
-                    if(element === e.target){
-                        if(app.pointer !== index){
-                            app.pointer = index;
-                        }
-                        else if(app.pointer === index){
-                            app.pointer = -1
-                        }
-                    } 
-                });
-                //console.log(app.pointer);
-            //}
-            //else{
-            //    app.pointer = -1;  
-            //}
+            const arrowList = document.querySelectorAll('.arrow-down');
+            if(e.target === arrowList[app.index]){
+                if(app.pointer !== app.index){
+                    app.pointer = app.index;
+                }
+                else if(app.pointer === app.index){
+                    app.pointer = -1
+                }
+            }
+            else{
+                app.pointer = -1;
+            }
+           
         });
     }   
 
