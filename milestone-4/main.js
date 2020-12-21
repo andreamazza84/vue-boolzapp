@@ -137,19 +137,20 @@ let app = new Vue({
     //MS4 
     //Ricerca utente tra le conversazioni
         convFilter: function(text){
-            if(text.length > 0){
-                //console.log(app.search);    
-                app.contacts.forEach((element) => {
-                    //alert("qui");
-                    element.visible = false;
-                    for (let i = 0; i < element.name.length; i++) {
-                        if(element.name[i] === text){
-                            element.visible = true;
-                        }
-                    }        
-                });
-            }
-        return console.log(app.contacts);
+            app.contacts.forEach((element) => {
+                if(text.length > 0){
+                    if(element.name.includes(text,0)){
+                        element.visible = true;
+                    }
+                    else{
+                        element.visible = false;
+                    }
+                }
+                else{
+                    element.visible = true;
+                }      
+            });
+
         },
     
     },

@@ -47,20 +47,9 @@
                     <input v-model="search" @keydown="convFilter(search)" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
             </div>
-
+            
             <!-- MS4 - ricerca conversazioni -->
-            <div v-if="!search.length" class="contacts">
-                <!-- Ciclo v-for per fare apparire tutti i contatti -->
-                <!-- Cliccando sul contatto viene passato il suo nome -->
-                <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)">
-                    <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
-                    <img class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
-                    <!-- Parentesi baffo per inserire il nome dei contatti -->
-                    <div class="user-name">{{contact.name}}</div>
-                </div>
-            </div>
-
-            <div v-else class="contacts">
+            <div class="contacts">
                 <!-- Ciclo v-for per fare apparire tutti i contatti -->
                 <!-- Cliccando sul contatto viene passato il suo nome -->
                 <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)">
@@ -70,7 +59,7 @@
                     <div v-if="contact.visible" class="user-name">{{contact.name}}</div>
                 </div>
             </div>
-
+        
         </div> <!-- /#sidebar -->
 
         <!-- Area chat -->
