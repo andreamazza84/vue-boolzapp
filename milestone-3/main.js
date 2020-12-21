@@ -128,8 +128,7 @@ let app = new Vue({
                     return app.userObj = element;
                 }
              });
-        //userObj = filteredList[0];
-        //console.log(userObj);
+        
         //aggiorna il valore per mostrarlo sull'header della chat 
         app.userName = app.userObj.name;
         app.userAvatar =  app.userObj.avatar;

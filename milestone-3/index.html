@@ -81,26 +81,26 @@
             <!-- MS3 - Il v-if costringe il v-for ad aggiornarsi ogni volta che la lunghezza dell'array cambia-->
             <div v-if="contacts[counter].messages.length" class="chat">
                 <!-- MS2 - Caricamento messaggi -->
+                <!-- MS3 - Inserimento nuovi messaggi -->
                 <div class="msg" v-for="message in contacts[counter].messages" :class="message.status">
                     <div class="text">{{message.text}}</div>
                     <div class="data">{{message.date}}</div>
                 </div>
-                <!-- MS3 - Inserimento nuovi messaggi -->
-                <div class="msg sent" v-for="message in sentMessages">
+                <!-- <div class="msg sent" v-for="message in sentMessages">
                     <div class="text">{{message.text}}</div>
                     <div class="data">{{message.date}}</div>
-                </div>
+                </div> -->
             </div>
 
             <!-- MS3 - Caricamento di base dei messaggi -->
-            <div v-else class="chat">
-                <!-- MS2 - Caricamento messaggi -->
+            <!-- MS2 - Caricamento messaggi -->
+            <!-- <div v-else class="chat">
                 <div class="msg" v-for="message in userMsg" :class="message.status">
                     <div class="text">{{message.text}}</div>
                     <div class="data">{{message.date}}</div>
                 </div>
             
-            </div>
+            </div> -->
 
             <div class="message-bar">
                 <i class="far fa-smile"></i>
