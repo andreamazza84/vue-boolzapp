@@ -88,6 +88,7 @@ let app = new Vue({
         ],
     // MS2
     //valori al caricamento della pagina.    
+    counter: 0,
     userName: "Michele",
     userAvatar: "_1",
     userMsg: [{
@@ -120,29 +121,36 @@ let app = new Vue({
     //MS2
     //Filtrare tra le chat soltanto quelle che corrispondono all'utente selezionato
         chatFilter: function(name, list){
-            const filteredList = list.filter((element) => {
-                return element.name === name;
-            });
-        //ricavo l'oggetto dall'array filtrata 
-        userObj = filteredList[0];
+            list.forEach((element, index) => {
+                if (element.name === name) {
+                    //ricavo l'oggetto e l'indice dall'array filtrata 
+                    app.counter = index;
+                    return app.userObj = element;
+                }
+             });
+        //userObj = filteredList[0];
         //console.log(userObj);
         //aggiorna il valore per mostrarlo sull'header della chat 
-        app.userName = userObj.name;
-        app.userAvatar =  userObj.avatar;
-        app.userMsg = userObj.messages;
-        return userObj;
+        app.userName = app.userObj.name;
+        app.userAvatar =  app.userObj.avatar;
+        app.userMsg = app.userObj.messages;
+        return app.userObj;
         },
     //MS3   
-        //Quando richiamata fa comparire il messaggi inserito nella chat
+    //Quando richiamata fa comparire il messaggi inserito nella chat
         sendMessage: function(text){
            if(text !== ""){
-               app.inputMsg = text;
+               app.inputMsg = {date: "10:00" , text: text, status: "sent"};
+               //Il messaggio in <input> viene eliminato appena premuto [enter]
                app.typingMsg = "";
-               app.sentMessages.push(app.inputMsg);
+               //app.sentMessages.push(app.inputMsg);
+               app.contacts[app.counter].messages.push(app.inputMsg);
+               //app.contacts[username][]
            }
-           console.log(app.sentMessages);
+           //console.log(app.sentMessages);
+           console.log(app.contacts[app.counter].messages);
            //setTimeout
-           return app.sentMessages;
+           return app.contacts;
         },
     },
 
