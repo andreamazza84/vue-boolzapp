@@ -139,7 +139,10 @@ let app = new Vue({
         convFilter: function(text){
             app.contacts.forEach((element) => {
                 if(text.length > 0){
-                    if(element.name.includes(text,0)){
+                    text = text.toLowerCase();
+                    const searchName = element.name.toLowerCase();
+                    //console.log(searchName);
+                    if(searchName.includes(text,0)){
                         element.visible = true;
                     }
                     else{
@@ -150,9 +153,8 @@ let app = new Vue({
                     element.visible = true;
                 }      
             });
-
-        },
-    
-    },
+            
+        },    
+    },   
 
 });

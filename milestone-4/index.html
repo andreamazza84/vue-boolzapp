@@ -43,8 +43,9 @@
             <!-- MS4 - ricerca conversazioni -->
             <div class="search">
                 <div class="text-bar">
-                    <i class="fas fa-search"></i>
-                    <input v-model="search" @keydown="convFilter(search)" type="text" placeholder="Cerca o inizia una nuova chat">
+                    <i class="fas fa-search" @click="convFilter(search)"></i>
+                    <!-- @keyup consente d allienare search con l'argomento della funzione convFilter, diversamente da keydown e keypress -->
+                    <input v-model="search" @keyup="convFilter(search)" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
             </div>
             
@@ -80,8 +81,8 @@
                 </div>
             </div>
 
-            <!-- MS3 - Il v-if costringe il v-for ad aggiornarsi ogni volta che la lunghezza dell'array cambia-->
-            <div v-if="contacts[counter].messages.length" class="chat">
+            <!-- MS3 - Obsoleto - v-if="contacts[counter].messages.length" - Il v-if costringe il v-for ad aggiornarsi ogni volta che la lunghezza dell'array cambia-->
+            <div class="chat">
                 <!-- MS2 - Caricamento messaggi -->
                 <div class="msg" v-for="message in contacts[counter].messages" :class="message.status">
                     <div class="text">{{message.text}}</div>
