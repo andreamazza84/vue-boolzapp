@@ -99,9 +99,11 @@ let app = new Vue({
     search: "",
 
     // MS5
-    show: "",
-
+    active: "active",
+    arrow: "",
+    pointer: 0,    
     }, 
+
 
     methods: {
     //MS2
@@ -155,14 +157,27 @@ let app = new Vue({
             });
             
         },
-        menuShow: function(){
+        menuShow: function(index){
             if (app.show === "show") {
                 app.show = "";
             }
             else{
                 app.show = "show"
             }
+            console.log(index);
         },    
-    },   
+    },
+    // mounted(){
+    //     document.addEventListener(('click'), function(e) {
+    //         const arrowList = document.querySelectorAll('.arrow-down')
+    //         arrowList.forEach(element => {
+    //             if(element === e.target){
+    //                 return app.arrow = element;
+    //             }
+    //         });
+    //     console.log(app.arrow);
+    //     return app.arrow;     
+    //     });
+    //}   
 
 });

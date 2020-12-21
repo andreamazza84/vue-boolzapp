@@ -234,6 +234,6 @@ img.avatar{
     list-style: none;
     margin: 10px;
 }
-.show{
+.active{
     display: block;
 }
