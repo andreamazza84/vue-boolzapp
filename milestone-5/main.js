@@ -179,58 +179,58 @@ let app = new Vue({
     // MS3 
     typing: "", //cache messaggi
     message: "",
-    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),  
+    date: dayjs().format('HH:mm'),  
     search: "",
     
     //MS4
-    alert: false,
-
+    
     // MS5
-    pointer: -1,
+    pointer: -1, // !0 per evitare che venga selezionato sempre il primo messaggio
     index: 0,    
     active: "active",
+    alert: false,
     }, 
 
 
     methods: {
-    //MS2 - Filtra tra le chat soltanto quelle che corrispondono all'utente selezionato
+    //MS2 - Filtra la chat che corrisponde all'utente selezionato
         chatFilter: function(name, list){
             list.forEach((element, index) => {
                 if (element.name === name) {
                     //ricavo l'indice dall'array filtrata 
-                    return app.counter = index;
+                    return this.counter = index;
                 }
              });
         
     //MS2 - Aggiorna il valore per mostrarlo sull'header della chat 
-        app.userName = app.contacts[app.counter].name;
-        app.userAvatar =  app.contacts[app.counter].avatar;
+        this.userName = this.contacts[this.counter].name;
+        this.userAvatar =  this.contacts[this.counter].avatar;
         },
     //MS3 - Quando richiamata fa comparire il messaggi inserito nella chat
         sendMessage: function(text){
            if(text !== ""){
-               app.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss') , text: text, status: "sent"};
+               this.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss') , text: text, status: "sent"};
                //Il messaggio in <input> viene eliminato appena premuto [enter]
-               app.typing = "";
-               app.contacts[app.counter].messages.push(app.message);
+               this.typing = "";
+               this.contacts[this.counter].messages.push(this.message);
            }
            //MS3 - Risposta automatica dopo un secondo
-           setTimeout(app.autoResponse, 1000);
+           setTimeout(this.autoResponse, 1000);
         },
         autoResponse: function(){
-            app.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss'), text: "ok", status: "received"};
-            app.contacts[app.counter].messages.push(app.message);
+            this.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss'), text: "ok", status: "received"};
+            this.contacts[this.counter].messages.push(this.message);
         },
     //MS4 - Ricerca l'utente tra le conversazioni
         convFilter: function(text){
-            app.alert = true;
-            app.contacts.forEach((element) => {
+            this.alert = true;
+            this.contacts.forEach((element) => {
                 if(text.length > 0){
                     text = text.toLowerCase();
                     const searchName = element.name.toLowerCase();
                     if(searchName.includes(text,0)){
                         element.visible = true;
-                        app.alert = false;
+                        this.alert = false;
                     }
                     else{
                         element.visible = false;
@@ -238,17 +238,17 @@ let app = new Vue({
                 }
                 else{
                     element.visible = true;
-                    app.alert = false;
+                    this.alert = false;
                 }      
             });
             
         },
         // MS5 - Funzione che passa il valore di index del v-for
         menuShow: function(index){
-            app.index = index;   
+            this.index = index;   
         },
         removeMsg: function(index){
-            app.contacts[app.counter].messages.splice(index, 1);
+            this.contacts[this.counter].messages.splice(index, 1);
         },
         scrollToElement() {
             const el = this.$el.getElementsByClassName('scroll-to-me')[0];

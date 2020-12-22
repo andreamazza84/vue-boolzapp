@@ -37,14 +37,14 @@
                 </div>
                 <div class="advise">
                     <p>Ricevi notifiche di nuovi messaggi</p>
-                    <p><a href="#">Attiva notifiche desktop</a></p>
+                    <a href="#">Attiva notifiche desktop</a>
                 </div>
             </div>
             <!-- MS4 - ricerca conversazioni -->
             <div class="search">
                 <div class="text-bar">
+                    <!-- MS4 - @keyup consente d allienare search con l'argomento della funzione convFilter, diversamente da keydown e keypress -->
                     <i class="fas fa-search" @click="convFilter(search)"></i>
-                    <!-- @keyup consente d allienare search con l'argomento della funzione convFilter, diversamente da keydown e keypress -->
                     <input v-model="search" @keyup="convFilter(search)" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <!-- MS4 - v-if per visualizzare solo le conversazioni filtrate -->
                     <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
                     <img v-if="contact.visible" class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
-                    <!-- Parentesi baffo per inserire il nome dei contatti -->
+                    <!-- Parentesi "baffo" per inserire il nome dei contatti -->
                     <div v-if="contact.visible" class="user-name">{{contact.name}}</div>
                 </div>
                 <!-- Avviso se non ci sono match con la ricerca -->
