@@ -21,7 +21,12 @@ let app = new Vue({
                     date: '10/01/2020 16:15:22',
                     text: 'Tutto fatto!',
                     status: 'received'
-                    }
+                    },
+                    {
+                    date: '10/01/2020 16:15:22',
+                    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis harum accusantium veniam repudiandae fugiat perferendis sit sapiente temporibus nesciunt cumque commodi, reprehenderit doloribus nostrum sunt, quaerat minus sint? Temporibus quisquam recusandae facilis veniam placeat saepe alias minima explicabo voluptatem harum?',
+                    status: 'received'
+                    },
                         ],
                 },
                 {
@@ -119,12 +124,12 @@ let app = new Vue({
                         },
                         {
                         date: '20/03/2020 16:30:55',
-                        text: 'Bene grazie! Stasera ci vediamo?',
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quo quibusdam, unde suscipit at rerum earum ipsam voluptatem dicta beatae adipisci, vitae rem expedita. Earum voluptatibus neque recusandae voluptates eveniet dolore aliquam? Iusto incidunt magni aperiam quidem nam molestias dolores quo laborum. Distinctio vitae quas molestias ea voluptatum possimus minima.',
                         status: 'received'
                         },
                         {
                         date: '20/03/2020 16:35:00',
-                        text: 'Mi piacerebbe ma devo andare a fare la spesa.',
+                        text: 'Alla faccia del messaggino!',
                         status: 'sent'
                         }
                     ],
@@ -213,13 +218,15 @@ let app = new Vue({
                //Il messaggio in <input> viene eliminato appena premuto [enter]
                this.typing = "";
                this.contacts[this.counter].messages.push(this.message);
+               //MS3 - Risposta automatica dopo un secondo
+               setTimeout(this.autoResponse, 1000);
+               setTimeout(this.scrollToEnd, 10);
            }
-           //MS3 - Risposta automatica dopo un secondo
-           setTimeout(this.autoResponse, 1000);
         },
         autoResponse: function(){
             this.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss'), text: "ok", status: "received"};
             this.contacts[this.counter].messages.push(this.message);
+            setTimeout(this.scrollToEnd, 10);
         },
     //MS4 - Ricerca l'utente tra le conversazioni
         convFilter: function(text){
@@ -243,23 +250,22 @@ let app = new Vue({
             });
             
         },
-        // MS5 - Funzione che passa il valore di index del v-for
+    // MS5 - Funzione che passa il valore di index del v-for
         menuShow: function(index){
             this.index = index;   
         },
+    // MS5 - Rimuove i messaggi selezionati con menu a tendina
         removeMsg: function(index){
             this.contacts[this.counter].messages.splice(index, 1);
         },
-        scrollToElement() {
-            const el = this.$el.getElementsByClassName('scroll-to-me')[0];
-        
-            if (el) {
-              el.scrollIntoView();
-            }
+    // Bonus - Posiziona automaticamente la scroll bar in basso all'inserimento dei messaggi.
+        scrollToEnd: function() {    	
+            const chat = document.querySelector(".chat");
+            chat.scrollTop = chat.scrollHeight;
         }    
     },
     mounted(){
-        // MS5 - Cliccando sull'icona il menu appare. Cliccandoci una seconda volta o in un altro punto, il menù scompare.
+    // MS5 - Cliccando sull'icona il menu appare. Cliccandoci una seconda volta o in un altro punto, il menù scompare.
         document.addEventListener(('click'), function(e) {
             const arrowList = document.querySelectorAll('.arrow-down');
             if(e.target === arrowList[app.index]){
@@ -275,6 +281,5 @@ let app = new Vue({
             }
            
         });
-    }   
-
+    },   
 });
