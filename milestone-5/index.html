@@ -61,7 +61,8 @@
                     <div v-if="contact.visible" class="user-name">{{contact.name}}</div>
                 </div>
                 <!-- Avviso se non ci sono match con la ricerca -->
-                <div class="alert">{{alert}}</div>
+                <div :class="(alert) ? 'alert' : ''"></div>
+                
             </div>
         
         </div> <!-- /#sidebar -->

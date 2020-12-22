@@ -183,7 +183,7 @@ let app = new Vue({
     search: "",
     
     //MS4
-    alert: "",
+    alert: false,
 
     // MS5
     pointer: -1,
@@ -223,14 +223,14 @@ let app = new Vue({
         },
     //MS4 - Ricerca l'utente tra le conversazioni
         convFilter: function(text){
-            app.alert = "Nessun utente con questo nome"
+            app.alert = true;
             app.contacts.forEach((element) => {
                 if(text.length > 0){
                     text = text.toLowerCase();
                     const searchName = element.name.toLowerCase();
                     if(searchName.includes(text,0)){
                         element.visible = true;
-                        app.alert = "";
+                        app.alert = false;
                     }
                     else{
                         element.visible = false;
@@ -238,7 +238,7 @@ let app = new Vue({
                 }
                 else{
                     element.visible = true;
-                    app.alert = "";
+                    app.alert = false;
                 }      
             });
             
