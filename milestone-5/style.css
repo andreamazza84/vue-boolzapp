@@ -29,18 +29,17 @@ body{
     display: flex;
     width: 80%;
     height: 90vh;
-    background-color:#eaeaea;
+    background-color:white;
     border-radius: 2px;
-    box-shadow: 1px 1px 100px 1px #777;
     overflow: hidden;
 }
 #sidebar{
-    width: 30%;
+    width: 25%;
     height: 100%;
     border-right: 1px solid #ccc;
 }
 #main{
-    width: 70%;
+    width: 75%;
 }
 /*/Container della chat*/
 /*Sidebar*/
@@ -88,7 +87,6 @@ i{
     width: 100%;
     height: 60px;
     background-color: #8edafc;
-    justify-content: space-around;
     align-items: center;
 }
 .notifiche > .bell{
@@ -98,10 +96,14 @@ i{
     background-color: #f2fbff;
     text-align: center;
     line-height: 45px;
+    margin-left: 15px;
 }
 .notifiche > .bell > .fa-bell-slash{
     margin: 0;
     color: #8edafc;
+}
+.notifiche .advise{
+    margin-left: 20px;
 }
 .notifiche > .advise > p{
     margin: 2px 0;
@@ -162,12 +164,15 @@ i{
     font-size: 18px;
     cursor: pointer;
 }
-.contact:active{
-    background-color: #eaeaea;
+.contact:hover{
+    background-color: #f5f5f5;
 }
 .contact > .user-name,
 .contact > .avatar{
     margin: 5px 15px;
+}
+.focus{
+    background-color: #ebebeb;
 }
 /* MAIN */
 /* header */
@@ -190,7 +195,7 @@ i{
 }
 .msg{
     position: relative;
-    min-width: 30%;
+    min-width: 20%;
     max-width: 50%;
     width: fit-content;
     color: #555;
@@ -239,8 +244,8 @@ i{
 }
 .drop-down{
     position: absolute;
-    top: 60%;
-    right: 15px;
+    top: 35px;
+    right: 20px;
     z-index: 1;
     padding: 5px;
     background-color: white;

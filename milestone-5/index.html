@@ -38,6 +38,7 @@
                     <a href="#">Attiva notifiche desktop</a>
                 </div>
             </div> <!--/notifiche -->
+
             <!-- MS4 - ricerca conversazioni -->
             <div class="search">
                 <div class="text-bar">
@@ -50,8 +51,8 @@
             <!-- MS4 - ricerca conversazioni -->
             <div class="contacts">
                 <!-- Ciclo v-for per fare apparire tutti i contatti -->
-                <!-- Cliccando sul contatto viene passato il suo nome -->
-                <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)">
+                <!-- Cliccando sul contatto viene passato il suo nome e rimane evidenziato in grigio -->
+                <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)" :class="(index === counter) ? 'focus' : ''">
                     <!-- MS4 - v-if per visualizzare solo le conversazioni filtrate -->
                     <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
                     <img v-if="contact.visible" class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">

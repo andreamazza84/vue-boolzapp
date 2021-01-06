@@ -209,9 +209,9 @@ let app = new Vue({
         
     //MS2 - Aggiorna il valore per mostrarlo sull'header della chat 
         this.userName = this.contacts[this.counter].name;
-        this.userAvatar =  this.contacts[this.counter].avatar;
+        this.userAvatar =  this.contacts[this.counter].avatar; 
         },
-    //MS3 - Quando richiamata fa comparire il messaggi inserito nella chat
+    //MS3 - Quando richiamata fa comparire il messaggio inserito nella chat
         sendMessage: function(text){
            if(text !== ""){
                this.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss') , text: text, status: "sent"};
