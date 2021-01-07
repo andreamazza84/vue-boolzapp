@@ -226,6 +226,7 @@ let app = new Vue({
         autoResponse: function(){
             this.message = {date: dayjs().format('DD/MM/YYYY HH:mm:ss'), text: "ok", status: "received"};
             this.contacts[this.counter].messages.push(this.message);
+            // Il ritardo è necessario per il corretto funzionamento della funzione scrollToEnd
             setTimeout(this.scrollToEnd, 10);
         },
     //MS4 - Ricerca l'utente tra le conversazioni
