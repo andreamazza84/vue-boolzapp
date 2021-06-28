@@ -280,7 +280,6 @@ let app = new Vue({
             else{
                 app.pointer = -1;
             }
-           
         });
     },   
 });

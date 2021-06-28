@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <title>Boolzapp</title>
+    <!-- Foglio di stile -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-top"></div>
+    <div class="container">
+        <!-- Area contatti -->
+        <div id="sidebar">
+            <div class="header">
+                <div class="header-left">
+                    <img class="avatar" src="../img/avatar_io.jpg" alt="avatar_1">
+                    <div class="user-name">Andrea</div>
+                </div>
+                <div class="header-right">
+                    <i class="fas fa-circle-notch"></i>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div> <!--/header -->
+
+            <div class="notifiche">
+                <div class="bell">
+                    <i class="fas fa-bell-slash"></i>
+                </div>
+                <div class="advise">
+                    <p>Ricevi notifiche di nuovi messaggi</p>
+                    <a href="#">Attiva notifiche desktop</a>
+                </div>
+            </div> <!--/notifiche -->
+
+            <!-- MS4 - ricerca conversazioni -->
+            <div class="search">
+                <div class="text-bar">
+                    <!-- MS4 - @keyup consente d allienare search con l'argomento della funzione convFilter, diversamente da keydown e keypress -->
+                    <i class="fas fa-search" @click="convFilter(search)"></i>
+                    <input v-model="search" @keyup="convFilter(search)" type="text" placeholder="Cerca o inizia una nuova chat">
+                </div>
+            </div> <!--/search -->
+            
+            <!-- MS4 - ricerca conversazioni -->
+            <div class="contacts">
+                <!-- Ciclo v-for per fare apparire tutti i contatti -->
+                <!-- Cliccando sul contatto viene passato il suo nome e rimane evidenziato in grigio -->
+                <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)" :class="(index === counter) ? 'focus' : ''">
+                    <!-- MS4 - v-if per visualizzare solo le conversazioni filtrate -->
+                    <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
+                    <img v-if="contact.visible" class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
+                    <!-- Parentesi "baffo" per inserire il nome dei contatti -->
+                    <div v-if="contact.visible" class="user-name">{{contact.name}}</div>
+                </div>
+                <!-- Avviso se non ci sono match con la ricerca -->
+                <div :class="(alert) ? 'alert' : ''"></div>
+            </div> <!--/contacts -->
+        </div> <!-- /#sidebar -->
+
+        <!-- Area chat -->
+        <div id="main">
+            <div class="header">
+                <div class="header-left">
+                    <!-- MS2- Aggiornamento del nome e avatar nell'header corrispondenti alla chat selezionata dal sidemenu -->
+                    <img class="avatar" :src="'../img/avatar' + userAvatar + '.jpg'" alt="profile picture">
+                    <div class="user-name">
+                        {{userName}}  
+                        <p>Ultimo accesso oggi alle {{date}}</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-paperclip"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div> <!--/header -->
+
+            <div class="chat">
+                <!-- MS2 - Caricamento messaggi -->
+                <div class="msg" v-for="(message, index) in contacts[counter].messages" :class="message.status">
+                    <div class="text">
+                        <span>{{message.text}}</span>
+                        <!-- MS5 - apparizione menu -->
+                        <i class="fas fa-angle-down arrow-down" @click="menuShow(index)"></i>
+                    </div>
+                    <div class="data">{{message.date}}</div>
+                    
+                    <!-- MS5 - Menu a tendina posizionato rispetto al div.msg -->
+                    <ul class="drop-down" :class="(index === pointer) ? 'active' : ''">
+                        <li class="item">Message info</li>
+                        <li class="item" @click="removeMsg(index)">Delete message</li>
+                    </ul>
+                </div>
+            </div> <!--/chat -->
+
+            <div class="message-bar">
+                <i class="far fa-smile"></i>
+                <div class="text-bar">
+                    <!-- MS3 - inserimento messaggi nella chat -->
+                    <input v-model="typing" v-on:keydown.enter="sendMessage(typing)" type="text" placeholder="Scrivi un messaggio">
+                </div>
+                <i class="fas fa-microphone"></i>
+            </div>
+        </div> <!-- /main-->
+    </div> <!-- /container-->
+    
+    <!-- VueJs CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- dayjs -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.9.7/dayjs.min.js"></script>
+    <!-- Script -->
+    <script src="main.js"></script>
+</body>
+</html>
