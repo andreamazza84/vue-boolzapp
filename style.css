@@ -176,7 +176,7 @@ i{
     flex-direction: column;
     width: 100%;
     height: calc(100% - 130px);
-    background-image: url(../img/mine.jpg);
+    background-image: url(./img/mine.jpg);
     background-position: center;
     background-repeat: repeat;
     overflow-y: auto;
