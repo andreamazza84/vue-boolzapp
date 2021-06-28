@@ -19,7 +19,7 @@
         <div id="sidebar">
             <div class="header">
                 <div class="header-left">
-                    <img class="avatar" src="../img/avatar_io.jpg" alt="avatar_1">
+                    <img class="avatar" src="img/avatar_io.jpg" alt="avatar_1">
                     <div class="user-name">Andrea</div>
                 </div>
                 <div class="header-right">
@@ -55,7 +55,7 @@
                 <div class="contact" v-for="(contact, index) in contacts" @click="chatFilter(contact.name, contacts)" :class="(index === counter) ? 'focus' : ''">
                     <!-- MS4 - v-if per visualizzare solo le conversazioni filtrate -->
                     <!-- Concatenazione di stringhe dentro il v-bind:src per avare tutte le immagini asociate ai nomi -->
-                    <img v-if="contact.visible" class ="avatar" :src="'../img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
+                    <img v-if="contact.visible" class ="avatar" :src="'img/avatar' + contact.avatar + '.jpg'" alt="profile picture">
                     <!-- Parentesi "baffo" per inserire il nome dei contatti -->
                     <div v-if="contact.visible" class="user-name">{{contact.name}}</div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="header">
                 <div class="header-left">
                     <!-- MS2- Aggiornamento del nome e avatar nell'header corrispondenti alla chat selezionata dal sidemenu -->
-                    <img class="avatar" :src="'../img/avatar' + userAvatar + '.jpg'" alt="profile picture">
+                    <img class="avatar" :src="'img/avatar' + userAvatar + '.jpg'" alt="profile picture">
                     <div class="user-name">
                         {{userName}}  
                         <p>Ultimo accesso oggi alle {{date}}</p>
